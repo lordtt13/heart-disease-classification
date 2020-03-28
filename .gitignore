@@ -2,7 +2,7 @@
 *__pycache__
 
 # Data Skipped
-/mit-bih
+/data
 
 # Model Binaries Skipped
 *.h5

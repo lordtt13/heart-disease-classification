@@ -39,8 +39,5 @@ def get_model(features, timestep, nclass):
     out = Dense(nclass, activation = "softmax")(x)
 
     model = tf.keras.models.Model(inp_, out)
-    opt = tf.keras.optimizers.Adam(0.001)
-
-    model.compile(optimizer=opt, loss = tf.keras.losses.sparse_categorical_crossentropy, metrics=['acc'])
 
     return model
