@@ -36,12 +36,11 @@ def get_model(features, timestep, nclass):
     x = Dropout(rate = 0.25)(x)
     x = Dense(128, activation = "relu")(x)
     x = Dense(32, activation = "relu")(x)
-    out = Dense(nclass, activation = "softmax", name="dense_3_mitbih")(x)
+    out = Dense(nclass, activation = "softmax")(x)
 
     model = tf.keras.models.Model(inp_, out)
-    opt = tf.keras.optimizers.Adam(0.01)
+    opt = tf.keras.optimizers.Adam(0.001)
 
     model.compile(optimizer=opt, loss = tf.keras.losses.sparse_categorical_crossentropy, metrics=['acc'])
-    
-    model.summary()
+
     return model
