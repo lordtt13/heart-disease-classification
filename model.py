@@ -10,7 +10,27 @@ import tensorflow as tf
 from tensorflow.keras.layers import Dense, Input, Dropout, Convolution1D, MaxPool1D, GlobalMaxPool1D
 
 
-def get_model(features, timestep, nclass):
+def get_model(features, nclass, timestep = 1, act = "softmax"):
+    '''
+    Returns tf-keras model, stacks of Conv1D-Conv1D-MaxPool1D-Dropout, with a Dense Top.
+
+    Parameters
+    ----------
+    features : int
+        Total number of features in your data
+    timestep : int
+        Look back value in time, default = 1
+    nclass : int
+        Total number of unique labels in your data
+    act : string
+        Final activation, either "sigmoid" or "softmax" (default)
+
+    Returns
+    -------
+    model : tf.keras.model
+        Neural Network
+
+    '''
     
     inp_ = Input(shape=(features, timestep))
     
@@ -36,7 +56,7 @@ def get_model(features, timestep, nclass):
     x = Dropout(rate = 0.25)(x)
     x = Dense(128, activation = "relu")(x)
     x = Dense(32, activation = "relu")(x)
-    out = Dense(nclass, activation = "softmax")(x)
+    out = Dense(nclass, activation = act)(x)
 
     model = tf.keras.models.Model(inp_, out)
 
