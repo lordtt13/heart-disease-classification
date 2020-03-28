@@ -3,3 +3,8 @@
 
 # Data Skipped
 /mit-bih
+
+# Model Binaries Skipped
+*.h5
+*.model
+*.hd5
